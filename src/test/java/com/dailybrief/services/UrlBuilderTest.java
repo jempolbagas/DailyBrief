@@ -54,7 +54,6 @@ class UrlBuilderTest {
                                                    // actually the service throws if parsing fails.
                                                    // Ideally we provide minimal valid JSON or just don't care about result join exception for this test
                                                    // Let's provide minimal valid JSON to avoid unnecessary exceptions in logs or flow.
-        String minimalJson = "{}";
 
         CompletableFuture<HttpResponse<String>> futureResponse = CompletableFuture.completedFuture(httpResponse);
         when(httpClient.sendAsync(any(HttpRequest.class), any(HttpResponse.BodyHandler.class)))
