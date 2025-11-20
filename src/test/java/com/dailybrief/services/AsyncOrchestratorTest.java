@@ -23,14 +23,14 @@ class AsyncOrchestratorTest {
         // Force 1 second delay
         when(mockWeather.getWeatherAsync(anyString())).thenAnswer(invocation ->
             CompletableFuture.supplyAsync(() -> {
-                try { Thread.sleep(1000); } catch (InterruptedException ignored) {}
+                try { Thread.sleep(1000); } catch (InterruptedException ignored) { Thread.currentThread().interrupt(); }
                 return null; // We don't need a real object for timing tests
             })
         );
 
         when(mockNews.getNewsAsync()).thenAnswer(invocation ->
             CompletableFuture.supplyAsync(() -> {
-                try { Thread.sleep(1000); } catch (InterruptedException ignored) {}
+                try { Thread.sleep(1000); } catch (InterruptedException ignored) { Thread.currentThread().interrupt(); }
                 return null; // We don't need a real object for timing tests
             })
         );
