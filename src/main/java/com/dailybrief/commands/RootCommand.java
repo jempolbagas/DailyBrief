@@ -31,12 +31,16 @@ public class RootCommand implements Callable<Integer> {
 
         System.out.println("\n=========================================");
 
-        if (!noWeather) {
+        if (data.weather() != null) {
             consoleRenderer.renderWeather(data.weather());
+        } else {
+            if (!noWeather) System.out.println("WEATHER: Unavailable (See errors above)");
         }
 
-        if (!noNews) {
+        if (data.news() != null) {
             consoleRenderer.renderNews(data.news());
+        } else {
+            if (!noNews) System.out.println("\nNEWS: Unavailable (See errors above)");
         }
 
         System.out.println("=========================================");
