@@ -21,6 +21,10 @@ public class DashboardService {
         } else {
             weatherFuture = weatherService.getWeatherAsync(city)
                     .exceptionally(e -> {
+                        Throwable cause = e.getCause() != null ? e.getCause() : e;
+                        if (cause instanceof IllegalStateException) {
+                            throw new RuntimeException(cause);
+                        }
                         System.err.println("Weather Service Error: " + e.getMessage());
                         return null; // Partial failure handling
                     });
@@ -32,6 +36,10 @@ public class DashboardService {
         } else {
             newsFuture = newsService.getNewsAsync()
                     .exceptionally(e -> {
+                        Throwable cause = e.getCause() != null ? e.getCause() : e;
+                        if (cause instanceof IllegalStateException) {
+                            throw new RuntimeException(cause);
+                        }
                         System.err.println("News Service Error: " + e.getMessage());
                         return null; // Partial failure handling
                     });
