@@ -3,7 +3,6 @@ package com.dailybrief.services;
 import com.dailybrief.models.NewsResponse;
 import com.dailybrief.models.WeatherResponse;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.concurrent.CompletableFuture;
 
