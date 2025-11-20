@@ -1,12 +1,22 @@
 package com.dailybrief.services;
 
+import com.dailybrief.config.AppConfig;
 import com.dailybrief.models.NewsResponse;
 import com.dailybrief.models.WeatherResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class DashboardService {
-    private final WeatherService weatherService = new WeatherService();
-    private final NewsService newsService = new NewsService();
+    private final WeatherService weatherService;
+    private final NewsService newsService;
+
+    public DashboardService(WeatherService weatherService, NewsService newsService) {
+        this.weatherService = weatherService;
+        this.newsService = newsService;
+    }
+
+    public DashboardService() {
+        this(new WeatherService(AppConfig.getInstance()), new NewsService());
+    }
 
     public record DashboardData(WeatherResponse weather, NewsResponse news) {}
 
