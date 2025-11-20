@@ -8,6 +8,8 @@ import java.util.List;
 
 public class ConsoleRenderer {
 
+    private static final int WEATHER_ART_WIDTH = 15;
+
     public void renderWeather(WeatherResponse w) {
         String country = (w.sys() != null) ? w.sys().country() : "N/A";
         String desc = (w.weather() != null && !w.weather().isEmpty())
@@ -30,8 +32,8 @@ public class ConsoleRenderer {
         for (int i = 0; i < maxLines; i++) {
             String art = (i < artLines.length) ? artLines[i] : "";
             String text = (i < textLines.size()) ? textLines.get(i) : "";
-            // Pad art to 15 chars for alignment
-            System.out.printf("%-15s %s%n", art, text);
+            // Pad art to WEATHER_ART_WIDTH chars for alignment
+            System.out.printf("%-" + WEATHER_ART_WIDTH + "s %s%n", art, text);
         }
     }
 

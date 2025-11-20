@@ -11,15 +11,18 @@ public class AsciiArt {
             "  /   \\  ";
 
     public static final String CLOUD =
-            "   .--.  \n" +
-            " .-(   ). \n" +
-            "(___.__)_)";
+            "   .--.    \n" +
+            " .-(   ).  \n" +
+            "(___.__)_) \n" +
+            "           \n" +
+            "           ";
 
     public static final String RAIN =
-            "  _  /   \n" +
-            " / )( \\  \n" +
-            " ' ' ' ' \n" +
-            "  ' ' '  ";
+            "  _  /     \n" +
+            " / )( \\    \n" +
+            " ' ' ' '   \n" +
+            "  ' ' '    \n" +
+            "           ";
 
     public static String getWeatherArt(String iconCode) {
         if (iconCode == null) {
