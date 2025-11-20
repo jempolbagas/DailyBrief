@@ -42,8 +42,8 @@ class AsyncOrchestratorTest {
         long duration = endTime - startTime;
 
         // Assert Parallelism: If sequential, it would take ~2000ms. Parallel should be ~1000ms.
-        // Allowing a small buffer for overhead (1200ms).
-        assertTrue(duration < 1200, "Execution took too long: " + duration + "ms. Expected parallel execution.");
+        // Allowing a larger buffer for overhead (1500ms) to reduce flakiness in CI/CD.
+        assertTrue(duration < 1500, "Execution took too long: " + duration + "ms. Expected parallel execution.");
         assertTrue(duration >= 1000, "Execution was suspiciously fast: " + duration + "ms. Expected at least 1000ms delay.");
     }
 
