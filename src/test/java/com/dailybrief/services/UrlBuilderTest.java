@@ -50,10 +50,7 @@ class UrlBuilderTest {
         when(appConfig.getApiKey("OPENWEATHER_API_KEY")).thenReturn(apiKey);
         when(appConfig.getHttpClient()).thenReturn(httpClient);
         when(httpResponse.statusCode()).thenReturn(200);
-        when(httpResponse.body()).thenReturn("{}"); // Empty JSON is enough as we fail on 404/etc but catch parse errors later,
-                                                   // actually the service throws if parsing fails.
-                                                   // Ideally we provide minimal valid JSON or just don't care about result join exception for this test
-                                                   // Let's provide minimal valid JSON to avoid unnecessary exceptions in logs or flow.
+        when(httpResponse.body()).thenReturn("{}"); // Empty JSON response - parsing failure is expected but not relevant for this URL encoding test
 
         CompletableFuture<HttpResponse<String>> futureResponse = CompletableFuture.completedFuture(httpResponse);
         when(httpClient.sendAsync(any(HttpRequest.class), any(HttpResponse.BodyHandler.class)))
