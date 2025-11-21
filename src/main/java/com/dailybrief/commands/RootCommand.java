@@ -32,7 +32,7 @@ public class RootCommand implements Callable<Integer> {
         System.out.println("Fetching Daily Brief...");
         DashboardData data;
         try {
-             data = dashboardService.getDashboard(city, noNews, noWeather);
+            data = dashboardService.getDashboard(city, noNews, noWeather);
         } catch (CompletionException e) {
             Throwable cause = e.getCause();
             // Unwrap RuntimeException if present (added in DashboardService)
@@ -43,12 +43,11 @@ public class RootCommand implements Callable<Integer> {
             if (cause instanceof IllegalStateException) {
                 System.out.println(AnsiColors.RED + "Setup Required: Please create a .env file with your API keys." + AnsiColors.RESET);
                 System.exit(1);
-                return 1; // Unreachable
             }
             throw e; // Rethrow if it's not the expected config error
         } catch (Exception e) {
             // Should not happen based on current logic, but good safety
-             throw new RuntimeException(e);
+            throw new RuntimeException(e);
         }
 
         System.out.println("\n=========================================");
