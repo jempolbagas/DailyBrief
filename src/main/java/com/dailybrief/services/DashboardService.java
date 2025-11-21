@@ -20,6 +20,15 @@ public class DashboardService {
 
     public record DashboardData(WeatherResponse weather, NewsResponse news) {}
 
+    private <T> T handleException(Throwable e) {
+        Throwable cause = e.getCause() != null ? e.getCause() : e;
+        if (cause instanceof IllegalStateException) {
+            throw new RuntimeException(cause);
+        }
+        System.err.println("Service Error: " + e.getMessage());
+        return null; // Partial failure handling
+    }
+
     // TDD 4.2: Orchestrator Logic
     public DashboardData getDashboard(String city, boolean noNews, boolean noWeather) {
         CompletableFuture<WeatherResponse> weatherFuture;
@@ -30,10 +39,7 @@ public class DashboardService {
             weatherFuture = CompletableFuture.completedFuture(null);
         } else {
             weatherFuture = weatherService.getWeatherAsync(city)
-                    .exceptionally(e -> {
-                        System.err.println("Weather Service Error: " + e.getMessage());
-                        return null; // Partial failure handling
-                    });
+                    .exceptionally(this::handleException);
         }
 
         // Handle News Request
@@ -41,10 +47,7 @@ public class DashboardService {
             newsFuture = CompletableFuture.completedFuture(null);
         } else {
             newsFuture = newsService.getNewsAsync()
-                    .exceptionally(e -> {
-                        System.err.println("News Service Error: " + e.getMessage());
-                        return null; // Partial failure handling
-                    });
+                    .exceptionally(this::handleException);
         }
 
         // Wait for both (Parallel Execution)
