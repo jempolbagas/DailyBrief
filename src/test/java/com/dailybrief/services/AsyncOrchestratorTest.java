@@ -34,7 +34,8 @@ class AsyncOrchestratorTest {
             })
         );
 
-        DashboardService dashboardService = new DashboardService(mockWeather, mockNews);
+        CacheManager mockCache = mock(CacheManager.class);
+        DashboardService dashboardService = new DashboardService(mockWeather, mockNews, mockCache);
 
         long startTime = System.currentTimeMillis();
         dashboardService.getDashboard("TestCity", false, false);
@@ -61,7 +62,8 @@ class AsyncOrchestratorTest {
         // News fails
         when(mockNews.getNewsAsync()).thenReturn(CompletableFuture.failedFuture(new RuntimeException("News API Down")));
 
-        DashboardService dashboardService = new DashboardService(mockWeather, mockNews);
+        CacheManager mockCache = mock(CacheManager.class);
+        DashboardService dashboardService = new DashboardService(mockWeather, mockNews, mockCache);
 
         // Execute
         DashboardService.DashboardData result = dashboardService.getDashboard("TestCity", false, false);
