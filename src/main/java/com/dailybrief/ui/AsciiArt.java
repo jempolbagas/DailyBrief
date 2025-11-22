@@ -2,27 +2,30 @@ package com.dailybrief.ui;
 
 public class AsciiArt {
 
+    public static final int WIDTH = 15;
+
     // 5 lines high for consistency
+    // Padded to exactly 15 chars width
     public static final String SUN =
-            "  \\   /  \n" +
-            "   .-.   \n" +
-            "― (   ) ―\n" +
-            "   `-’   \n" +
-            "  /   \\  ";
+            "     \\   /     \n" +
+            "      .-.      \n" +
+            "   ― (   ) ―   \n" +
+            "      `-’      \n" +
+            "     /   \\     ";
 
     public static final String CLOUD =
-            "   .--.    \n" +
-            " .-(   ).  \n" +
-            "(___.__)_) \n" +
-            "           \n" +
-            "           ";
+            "     .--.      \n" +
+            "   .-(   ).    \n" +
+            "  (___.__)_)   \n" +
+            "               \n" +
+            "               ";
 
     public static final String RAIN =
-            "  _  /     \n" +
-            " / )( \\    \n" +
-            " ' ' ' '   \n" +
-            "  ' ' '    \n" +
-            "           ";
+            "    _  /       \n" +
+            "   / )( \\      \n" +
+            "   ' ' ' '     \n" +
+            "    ' ' '      \n" +
+            "               ";
 
     public static String getWeatherArt(String iconCode) {
         if (iconCode == null) {
