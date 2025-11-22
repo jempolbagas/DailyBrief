@@ -17,6 +17,8 @@ public class AppConfig {
         this.httpClient = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(5))
                 .build();
+
+        assert this.httpClient != null : "HttpClient failed to initialize";
     }
 
     public static synchronized AppConfig getInstance() {
